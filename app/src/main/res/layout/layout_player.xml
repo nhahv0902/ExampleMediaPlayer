@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@android:color/transparent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/play_icn_loop" />
+
+    <ImageView
+        android:id="@+id/btn_prev"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:src="@drawable/play_btn_prev_selector" />
+
+    <ImageView
+        android:id="@+id/btn_play"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:src="@drawable/play_btn_play_selector" />
+
+    <ImageView
+        android:id="@+id/btn_next"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:src="@drawable/play_btn_next_selector" />
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@null"
+        android:src="@drawable/play_icn_src" />
+</LinearLayout>
