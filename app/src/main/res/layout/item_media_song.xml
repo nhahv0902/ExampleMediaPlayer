@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="media"
+            type="com.nhahv.mediaplayer.models.MediaSong" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linear_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_name_song"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/size_10"
+            android:text="@{media.name}"
+            android:textSize="@dimen/size_20sp" />
+
+        <TextView
+            android:id="@+id/text_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:paddingLeft="@dimen/size_20"
+            android:paddingRight="@dimen/size_10"
+            android:paddingStart="@dimen/size_20"
+            android:paddingTop="@dimen/size_10"
+            android:text="@{media.artist}"
+            android:textSize="@dimen/size_18sp" />
+    </LinearLayout>
+</layout>
