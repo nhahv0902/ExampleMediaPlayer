@@ -47,6 +47,9 @@ public class MediaPlayerManager {
 
     private void setListMediaSongs() {
 
+        if (mListMediaSongs.size() > 0) {
+            return;
+        }
         String[] projection = new String[]{
                 MediaStore.MediaColumns.TITLE,
                 MediaStore.MediaColumns.DISPLAY_NAME,
@@ -92,8 +95,14 @@ public class MediaPlayerManager {
             String artist = cursor.getString(indexARTIST);
             String album = cursor.getString(indexALBUM);
             String duration = cursor.getString(indexDURATION);
+            int durationInt = 0;
+            try {
+                durationInt = Integer.parseInt(duration);
+            } catch (NumberFormatException e) {
+                Log.d(TAG, "" + duration);
+            }
 
-            mListMediaSongs.add(new MediaSong(title, name, data, artist, album, Integer.parseInt(duration)));
+            mListMediaSongs.add(new MediaSong(title, name, data, artist, album, durationInt));
 
             cursor.moveToNext();
         }
@@ -106,8 +115,10 @@ public class MediaPlayerManager {
     }
 
 
-    public void playOrPause(String pathMusic, boolean isPlayContinous) {
-        if (mediaState == IDLE || mediaState == STOP) {
+    public void playOrPause(String pathMusic, boolean isPlayContinue) {
+        if ((mediaState == IDLE || mediaState == STOP) ||
+                (mediaState == PLAY && isPlayContinue) ||
+                (mediaState == PAUSE && isPlayContinue)) {
             Uri uri = Uri.parse(pathMusic);
             try {
                 mMediaPlayer.reset();
@@ -120,24 +131,11 @@ public class MediaPlayerManager {
 
             mediaState = PLAY;
         }
-        if (mediaState == PLAY && isPlayContinous) {
-            try {
-                Uri uri = Uri.parse(pathMusic);
-                mMediaPlayer.reset();
-                mMediaPlayer.setDataSource(mContext, uri);
-                mMediaPlayer.prepare();
-                mMediaPlayer.start();
-                mediaState = PLAY;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-        if (mediaState == PLAY && !isPlayContinous) {
+        if (mediaState == PLAY && !isPlayContinue) {
             mMediaPlayer.pause();
             mediaState = PAUSE;
-        }
-        if (mediaState == PAUSE) {
+        } else if (mediaState == PAUSE && !isPlayContinue) {
             mMediaPlayer.start();
             mediaState = PLAY;
         }

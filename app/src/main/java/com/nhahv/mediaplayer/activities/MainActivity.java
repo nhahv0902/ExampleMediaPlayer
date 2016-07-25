@@ -21,6 +21,7 @@ import com.nhahv.mediaplayer.interfaces.OnClickRecyclerView;
 import com.nhahv.mediaplayer.media.MediaPlayerManager;
 import com.nhahv.mediaplayer.models.MediaSong;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     private static final long TIME_DELAY = 100;
     private static final int TIME_SPEED = 5000;
     private final String TAG = getClass().getSimpleName();
-    private List<MediaSong> mListMediaPlayer;
+    private List<MediaSong> mListMediaPlayer = new ArrayList<>();
 
     private MediaPlayerManager mPlayerManager;
 
@@ -44,13 +45,12 @@ public class MainActivity extends AppCompatActivity
 
     private MediaSongAdapter adapter;
     private boolean isPlayContinue;
-    private boolean isLoop;
 
     private int mTimeCurrent;
     private int mTimeEnd;
+    private String mTitle;
 
     private Handler mHandler;
-
 
     private Runnable mRunnable = new Runnable() {
         @Override
@@ -69,9 +69,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mPlayerManager = new MediaPlayerManager(this, this);
-        mListMediaPlayer = mPlayerManager.getListMediaSong();
+        mListMediaPlayer.addAll(mPlayerManager.getListMediaSong());
 
         mHandler = new Handler();
         for (MediaSong song : mListMediaPlayer) {
@@ -93,6 +92,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view, int position) {
                 if (position != mPosition) {
+                    mTitle = mListMediaPlayer.get(position).getName();
+                    setTitle(mTitle);
                     mPosition = position;
                     isPlayContinue = true;
                     onClickPlayMedia(mPosition);
@@ -102,10 +103,14 @@ public class MainActivity extends AppCompatActivity
 
         ));
 
-        mImagePlay = (ImageView) findViewById(R.id.btn_play);
+        mImagePlay = (ImageView) findViewById(R.id.image_play);
         mTextCurrentTime = (TextView) findViewById(R.id.text_current_time);
         mTextTotalTime = (TextView) findViewById(R.id.text_total_time);
         mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+
+        mTitle = mListMediaPlayer.get(0).getName();
+        setTitle(mTitle);
+
     }
 
     @Override
@@ -142,11 +147,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.btn_loop:
                 if (mPlayerManager.getLoop()) {
                     mPlayerManager.setLoop(false);
-                    ((ImageView) findViewById(R.id.btn_loop))
+                    ((ImageView) findViewById(R.id.image_loop))
                             .setImageResource(R.drawable.ic_loop_white_24dp);
                 } else {
                     mPlayerManager.setLoop(true);
-                    ((ImageView) findViewById(R.id.btn_loop))
+                    ((ImageView) findViewById(R.id.image_loop))
                             .setImageResource(R.drawable.ic_loop_white_select);
                 }
                 break;
@@ -228,11 +233,11 @@ public class MainActivity extends AppCompatActivity
 
         adapter.notifyDataSetChanged();
         if (MediaPlayerManager.mediaState == MediaPlayerManager.PLAY) {
-            mImagePlay.setImageResource(R.drawable.ic_pause_white_24dp);
+            mImagePlay.setImageResource(R.drawable.ic_pause_white_36dp);
         }
         if (MediaPlayerManager.mediaState == MediaPlayerManager.PAUSE
                 || MediaPlayerManager.mediaState == MediaPlayerManager.STOP) {
-            mImagePlay.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+            mImagePlay.setImageResource(R.drawable.ic_play_arrow_white_36dp);
         }
     }
 
@@ -241,7 +246,6 @@ public class MainActivity extends AppCompatActivity
         MediaPlayerManager.mediaState = MediaPlayerManager.IDLE;
         super.onStop();
     }
-
 
     private String convertTime(int time) {
 

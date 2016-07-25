@@ -3,5 +3,5 @@
     <item android:drawable="@drawable/ic_play_select" android:state_pressed="true" />
     <item android:drawable="@drawable/ic_play_select" android:state_active="true" />
     <item android:drawable="@drawable/ic_play_select" android:state_focused="true" />
-    <item android:drawable="@drawable/ic_play_arrow_white_24dp" />
+    <item android:drawable="@drawable/ic_play_arrow_white_36dp" />
 </selector>

@@ -24,6 +24,7 @@ import com.nhahv.mediaplayer.R;
  * <></>
  */
 public class MediaPlayView extends View {
+
     private Bitmap play_needle;
     private Bitmap play_disc;
     private Bitmap play_avater;

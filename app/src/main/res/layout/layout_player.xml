@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <!--@android:color/transparent-->
@@ -25,7 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_6"
             android:layout_marginRight="@dimen/size_6"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:thumb="@drawable/seek_handler" />
 
         <TextView
             android:id="@+id/text_total_time"
@@ -37,113 +38,116 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="#283593"
         android:baselineAligned="true">
 
         <LinearLayout
+            android:id="@+id/btn_loop"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_loop"
+                android:id="@+id/image_loop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_loop_white_24dp" />
+                android:src="@drawable/ic_loop_white_36dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_prev"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_prev"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_skip_previous_white_24dp" />
+                android:src="@drawable/ic_skip_previous_white_36dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_prev_time"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_prev_time"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_fast_rewind_white_24dp" />
+                android:src="@drawable/ic_fast_rewind_white_36dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_play"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_play"
+                android:id="@+id/image_play"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_play_arrow_white_24dp" />
+                android:src="@drawable/ic_play_arrow_white_36dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_next_time"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_next_time"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_fast_forward_white_24dp" />
+                android:src="@drawable/ic_fast_forward_white_36dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_skip_next_white_24dp" />
+                android:src="@drawable/ic_skip_next_white_36dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_list_song"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/btn_list_song"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_playlist_add_white_24dp" />
+                android:src="@drawable/ic_queue_music_white_36dp" />
 
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
